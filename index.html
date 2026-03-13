@@ -36,11 +36,19 @@ button{
 }
 
 img{
-    max-width: 50%;
+    max-width: 90%;
     height: auto;
     margin-top: 20px;
     border-radius: 10px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h2{
+    margin-top:40px;
+    color:#555;
 }
 </style>
 
@@ -55,8 +63,36 @@ img{
 
 <h2>养生指南图片</h2>
 
-<!-- 图片展示 -->
-<img src="test/IMG_1255.jpg" alt="李小龙">
+<div id="content">
+    <!-- 图片会通过 JS 动态加载 -->
+</div>
+
+<script>
+// JSON 数据（可以放在 GitHub Pages 上的 data.json 文件，示例写死在这里）
+const data = [
+    {
+        "title": "李小龙养生指南",
+        "image": "test/IMG_1255.jpg"
+    },
+    {
+        "title": "锻炼方法示例",
+        "image": "test/IMG_1256.jpg"
+    }
+];
+
+// 动态加载图片和标题
+const container = document.getElementById('content');
+
+data.forEach(item => {
+    const h3 = document.createElement('h3');
+    h3.textContent = item.title;
+    const img = document.createElement('img');
+    // 加版本号确保图片更新后自动刷新
+    img.src = item.image + "?v=" + new Date().getTime();
+    container.appendChild(h3);
+    container.appendChild(img);
+});
+</script>
 
 </body>
 </html>
