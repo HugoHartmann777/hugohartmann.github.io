@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Chinese GongFu</title>
+<title>Chinese Health Assistant</title>
 
 <style>
 
@@ -14,7 +14,7 @@ body{
     padding:40px;
 }
 
-/* 主卡片 */
+/* Main Card */
 .card{
     background:white;
     padding:35px;
@@ -24,7 +24,7 @@ body{
     box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* 时钟 */
+/* Clock */
 .clock{
     font-size:50px;
     font-weight:bold;
@@ -32,19 +32,19 @@ body{
     color:#2c3e50;
 }
 
-/* 问候 */
+/* Greeting */
 .greeting{
     font-size:22px;
     color:#666;
     margin-bottom:10px;
 }
 
-/* 标题 */
+/* Title */
 h1{
     color:#333;
 }
 
-/* 按钮 */
+/* Button */
 button{
     margin-top:20px;
     background:#4CAF50;
@@ -62,7 +62,7 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* 中医表格 */
+/* Table */
 
 .table-card{
     margin-top:40px;
@@ -91,14 +91,14 @@ td{
     border-bottom:1px solid #eee;
 }
 
-/* 当前时辰高亮 */
+/* Highlight */
 
 .active{
     background:#ffeaa7;
     font-weight:bold;
 }
 
-/* 图片 */
+/* Image */
 
 img{
     max-width:2000px;
@@ -116,17 +116,17 @@ img{
 <div class="card">
 
 <div class="greeting" id="greeting">
-你好
+Hello
 </div>
 
 <div class="clock" id="clock">
 00:00:00
 </div>
 
-<h1>🌿 中医养生助手</h1>
+<h1>🌿 Traditional Chinese Health Assistant</h1>
 
 <button onclick="startExercise()">
-开始养生锻炼
+Start Wellness Exercise
 </button>
 
 </div>
@@ -134,99 +134,99 @@ img{
 
 <div class="table-card">
 
-<h2>中医十二时辰养生表</h2>
+<h2>Traditional Chinese Medicine 12-Hour Body Clock</h2>
 
 <table id="tcmTable">
 
 <tr>
-<th>时辰</th>
-<th>时间</th>
-<th>经络</th>
+<th>Period</th>
+<th>Time</th>
+<th>Meridian</th>
 </tr>
 
 <tr data-hour="23">
-<td>子时</td>
+<td>Zi Hour</td>
 <td>23:00-01:00</td>
-<td>胆经</td>
+<td>Gallbladder</td>
 </tr>
 
 <tr data-hour="1">
-<td>丑时</td>
+<td>Chou Hour</td>
 <td>01:00-03:00</td>
-<td>肝经</td>
+<td>Liver</td>
 </tr>
 
 <tr data-hour="3">
-<td>寅时</td>
+<td>Yin Hour</td>
 <td>03:00-05:00</td>
-<td>肺经</td>
+<td>Lung</td>
 </tr>
 
 <tr data-hour="5">
-<td>卯时</td>
+<td>Mao Hour</td>
 <td>05:00-07:00</td>
-<td>大肠经</td>
+<td>Large Intestine</td>
 </tr>
 
 <tr data-hour="7">
-<td>辰时</td>
+<td>Chen Hour</td>
 <td>07:00-09:00</td>
-<td>胃经</td>
+<td>Stomach</td>
 </tr>
 
 <tr data-hour="9">
-<td>巳时</td>
+<td>Si Hour</td>
 <td>09:00-11:00</td>
-<td>脾经</td>
+<td>Spleen</td>
 </tr>
 
 <tr data-hour="11">
-<td>午时</td>
+<td>Wu Hour</td>
 <td>11:00-13:00</td>
-<td>心经</td>
+<td>Heart</td>
 </tr>
 
 <tr data-hour="13">
-<td>未时</td>
+<td>Wei Hour</td>
 <td>13:00-15:00</td>
-<td>小肠经</td>
+<td>Small Intestine</td>
 </tr>
 
 <tr data-hour="15">
-<td>申时</td>
+<td>Shen Hour</td>
 <td>15:00-17:00</td>
-<td>膀胱经</td>
+<td>Bladder</td>
 </tr>
 
 <tr data-hour="17">
-<td>酉时</td>
+<td>You Hour</td>
 <td>17:00-19:00</td>
-<td>肾经</td>
+<td>Kidney</td>
 </tr>
 
 <tr data-hour="19">
-<td>戌时</td>
+<td>Xu Hour</td>
 <td>19:00-21:00</td>
-<td>心包</td>
+<td>Pericardium</td>
 </tr>
 
 <tr data-hour="21">
-<td>亥时</td>
+<td>Hai Hour</td>
 <td>21:00-23:00</td>
-<td>三焦</td>
+<td>Triple Burner</td>
 </tr>
 
 </table>
 
 </div>
 
-<h2>page</h2>
+<h2>Page</h2>
 
-<img src="史泰龙.jpg">
+<img src="sylvester.jpg">
 
 <script>
 
-/* 时钟 */
+/* Clock */
 
 function updateClock(){
 
@@ -245,14 +245,14 @@ highlightTime(now.getHours())
 }
 
 
-/* 问候 */
+/* Greeting */
 
 function updateGreeting(hour){
 
 let text = "Hello"
 
 if(hour < 12){
-text = "Good Moring ☀️"
+text = "Good Morning ☀️"
 }
 else if(hour < 18){
 text = "Hello 🌿"
@@ -265,7 +265,7 @@ document.getElementById("greeting").innerText = text
 }
 
 
-/* 高亮当前时辰 */
+/* Highlight current time period */
 
 function highlightTime(hour){
 
@@ -279,8 +279,6 @@ let start = row.getAttribute("data-hour")
 if(start !== null){
 
 start = parseInt(start)
-
-let end = (start + 2) % 24
 
 if(
 (start <= hour && hour < start + 2) ||
@@ -296,10 +294,10 @@ row.classList.add("active")
 }
 
 
-/* 按钮 */
+/* Button */
 
 function startExercise(){
-alert("Let's begin today's health and wellness exercise.💪")
+alert("Let's begin today's health and wellness exercise 💪")
 }
 
 
