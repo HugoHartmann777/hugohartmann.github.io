@@ -1,11 +1,11 @@
 {
   "pages": [
     {
-      "title": "访问我的网页1",
+      "title": "展示我的网页1",
       "url": "index_zh_1.html"
     },
     {
-      "title": "访问我的网页2",
+      "title": "展示我的网页2",
       "url": "index_zh_2.html"
     }
   ]
