@@ -1,1 +1,311 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Chinese Health Assistant -- 1</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#a8e6cf,#dcedc1);
+    text-align:center;
+    padding:40px;
+}
+
+/* Main Card */
+.card{
+    background:white;
+    padding:35px;
+    margin:auto;
+    width:420px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Clock */
+.clock{
+    font-size:50px;
+    font-weight:bold;
+    margin-top:10px;
+    color:#2c3e50;
+}
+
+/* Greeting */
+.greeting{
+    font-size:22px;
+    color:#666;
+    margin-bottom:10px;
+}
+
+/* Title */
+h1{
+    color:#333;
+}
+
+/* Button */
+button{
+    margin-top:20px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#45a049;
+    transform:scale(1.05);
+}
+
+/* Table */
+
+.table-card{
+    margin-top:40px;
+    background:white;
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+}
+
+/* Highlight */
+
+.active{
+    background:#ffeaa7;
+    font-weight:bold;
+}
+
+/* Image */
+
+img{
+    max-width:2000px;
+    margin-top:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="greeting" id="greeting">
+Hello
+</div>
+
+<div class="clock" id="clock">
+00:00:00
+</div>
+
+<h1>🌿 Traditional Chinese Health Assistant</h1>
+
+<button onclick="startExercise()">
+Start Wellness Exercise
+</button>
+
+</div>
+
+
+<div class="table-card">
+
+<h2>Traditional Chinese Medicine 12-Hour Body Clock</h2>
+
+<table id="tcmTable">
+
+<tr>
+<th>Period</th>
+<th>Time</th>
+<th>Meridian</th>
+</tr>
+
+<tr data-hour="23">
+<td>Zi Hour</td>
+<td>23:00-01:00</td>
+<td>Gallbladder</td>
+</tr>
+
+<tr data-hour="1">
+<td>Chou Hour</td>
+<td>01:00-03:00</td>
+<td>Liver</td>
+</tr>
+
+<tr data-hour="3">
+<td>Yin Hour</td>
+<td>03:00-05:00</td>
+<td>Lung</td>
+</tr>
+
+<tr data-hour="5">
+<td>Mao Hour</td>
+<td>05:00-07:00</td>
+<td>Large Intestine</td>
+</tr>
+
+<tr data-hour="7">
+<td>Chen Hour</td>
+<td>07:00-09:00</td>
+<td>Stomach</td>
+</tr>
+
+<tr data-hour="9">
+<td>Si Hour</td>
+<td>09:00-11:00</td>
+<td>Spleen</td>
+</tr>
+
+<tr data-hour="11">
+<td>Wu Hour</td>
+<td>11:00-13:00</td>
+<td>Heart</td>
+</tr>
+
+<tr data-hour="13">
+<td>Wei Hour</td>
+<td>13:00-15:00</td>
+<td>Small Intestine</td>
+</tr>
+
+<tr data-hour="15">
+<td>Shen Hour</td>
+<td>15:00-17:00</td>
+<td>Bladder</td>
+</tr>
+
+<tr data-hour="17">
+<td>You Hour</td>
+<td>17:00-19:00</td>
+<td>Kidney</td>
+</tr>
+
+<tr data-hour="19">
+<td>Xu Hour</td>
+<td>19:00-21:00</td>
+<td>Pericardium</td>
+</tr>
+
+<tr data-hour="21">
+<td>Hai Hour</td>
+<td>21:00-23:00</td>
+<td>Triple Burner</td>
+</tr>
+
+</table>
+
+</div>
+
+<h2>Page</h2>
+
+<img src="sylvester.jpg">
+
+<script>
+
+/* Clock */
+
+function updateClock(){
+
+const now = new Date()
+
+let h = now.getHours().toString().padStart(2,'0')
+let m = now.getMinutes().toString().padStart(2,'0')
+let s = now.getSeconds().toString().padStart(2,'0')
+
+document.getElementById("clock").innerText =
+h + ":" + m + ":" + s
+
+updateGreeting(now.getHours())
+
+highlightTime(now.getHours())
+}
+
+
+/* Greeting */
+
+function updateGreeting(hour){
+
+let text = "Hello"
+
+if(hour < 12){
+text = "Good Morning ☀️"
+}
+else if(hour < 18){
+text = "Hello 🌿"
+}
+else{
+text = "Good Night 🌙"
+}
+
+document.getElementById("greeting").innerText = text
+}
+
+
+/* Highlight current time period */
+
+function highlightTime(hour){
+
+const rows = document.querySelectorAll("#tcmTable tr")
+
+rows.forEach(row=>{
+row.classList.remove("active")
+
+let start = row.getAttribute("data-hour")
+
+if(start !== null){
+
+start = parseInt(start)
+
+if(
+(start <= hour && hour < start + 2) ||
+(start === 23 && (hour >= 23 || hour < 1))
+){
+row.classList.add("active")
+}
+
+}
+
+})
+
+}
+
+
+/* Button */
+
+function startExercise(){
+alert("Let's begin today's health and wellness exercise 💪")
+}
+
+
+setInterval(updateClock,1000)
+updateClock()
+
+</script>
+
+</body>
+</html>
