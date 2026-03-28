@@ -1,11 +1,11 @@
 {
   "pages": [
     {
-      "title": "English_1",
+      "title": "Show my PAGE1",
       "url": "index_en_1.html"
     },
     {
-      "title": "English_2",
+      "title": "Show my PAGE2",
       "url": "index_en_2.html"
     }
   ]
